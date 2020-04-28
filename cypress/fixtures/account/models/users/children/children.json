@@ -1,0 +1,82 @@
+[
+    {
+        "username": "BR1",
+        "gender": "male",
+        "age": "9.25",
+        "age_calc_date": "2020-04-13",
+        "institution_id": "",
+        "password": "123"
+    },
+    {
+        "username": "BR2",
+        "gender": "male",
+        "age": "10.08",
+        "age_calc_date": "2020-04-13",
+        "institution_id": "",
+        "password": "123"
+    },
+    {
+        "username": "BR3",
+        "gender": "female",
+        "age": "9.17",
+        "age_calc_date": "2020-04-13",
+        "institution_id": "",
+        "password": "123"
+    },
+    {
+        "username": "BR4",
+        "gender": "male",
+        "age": "10.33",
+        "age_calc_date": "2020-04-13",
+        "institution_id": "",
+        "password": "123"
+    },
+    {
+        "username": "BR5",
+        "gender": "male",
+        "age": "9.25",
+        "age_calc_date": "2020-04-13",
+        "institution_id": "",
+        "password": "123"
+    },
+    {
+        "username": "BR6",
+        "gender": "male",
+        "age": "9.42",
+        "age_calc_date": "2020-04-13",
+        "institution_id": "",
+        "password": "123"
+    },
+    {
+        "username": "BR7",
+        "gender": "female",
+        "age": "10.50",
+        "age_calc_date": "2020-04-13",
+        "institution_id": "",
+        "password": "123"
+    },
+    {
+        "username": "BR8",
+        "gender": "female",
+        "age": "11.67",
+        "age_calc_date": "2020-04-13",
+        "institution_id": "",
+        "password": "123"
+    },
+    {
+        "username": "BR9",
+        "gender": "male",
+        "age": "10.67",
+        "age_calc_date": "2020-04-13",
+        "institution_id": "",
+        "password": "123"
+    },
+    {
+        "username": "BR10",
+        "gender": "female",
+        "age": "9.83",
+        "age_calc_date": "2020-04-13",
+        "institution_id": "",
+        "password": "123"
+    }
+]

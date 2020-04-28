@@ -1,0 +1,19 @@
+{
+    "baseUrl": "https://api.test.ocariot.tk:4041/v1",
+    "integrationFolder": "./cypress/e2e",
+    "waitForAnimations": false,
+    "env": {
+        "dashboard_uri": "https://ocariot-87761.web.app/"
+    },
+    "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "reporterEnabled": "mochawesome",
+        "mochawesomeReporterOptions": {
+            "reportDir": "cypress/reports/mocha",
+            "quite": true,
+            "overwrite": false,
+            "html": false,
+            "json": true
+        }
+    }
+}
