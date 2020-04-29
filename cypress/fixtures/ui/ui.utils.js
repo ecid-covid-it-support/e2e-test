@@ -1,6 +1,7 @@
 const card = require('./cards.title')
 const questDescription = require('./quest.description')
 import './q501/utils'
+import './q502/util'
 
 Cypress.Commands.add("loginUI", function (user) {
     cy.get('[ng-reflect-name=username]')
@@ -13,12 +14,16 @@ Cypress.Commands.add("loginUI", function (user) {
 })
 
 Cypress.Commands.add("checkChild", function (child) {
-    cy.contains(child.username).parent('tr').within(() => {
-        cy.get('.cdk-column-name').should('have.text', ` ${child.username}`)
-        cy.get('.cdk-column-gender').should('have.text', ` ${child.gender === 'male' ? 'Masculino' : 'Feminino'} `)
-        cy.get('.cdk-column-class').should('have.text', ` 4th Grade `)
-        cy.get('.cdk-column-birth').should('have.text', `${Math.floor(child.age)}`)
+    cy.contains(child.username).parent('tr').then(($tr) => {
+        cy.get($tr).find('.cdk-column-name').then($td => expect($td).to.have.text(` ${child.username}`))
+        cy.get($tr).find('.cdk-column-gender').then($td => expect($td).to.have.text(` ${child.gender === 'male' ? 'Masculino' : 'Feminino'} `))
+        cy.get($tr).find('.cdk-column-class').then($td => expect($td).to.have.text(` 4th Grade `))
+        cy.get($tr).find('.cdk-column-birth').then($td => expect($td).to.have.text(`${Math.floor(child.age)}`))
     })
+})
+
+Cypress.Commands.add("selectChild", function (child) {
+    cy.get(`td:contains(${child.username})`).then(td => td.click())
 })
 
 Cypress.Commands.add("selectQuest", function (description) {
@@ -41,16 +46,16 @@ Cypress.Commands.add("selectQuest", function (description) {
 Cypress.Commands.add("selectCard", function (cardTitle) {
     switch (cardTitle) {
         case card.FOLLOW:
-            return cy.get('.card-title').contains(card.FOLLOW).click()
+            return cy.get('.card-title').contains(card.FOLLOW).parent().next().click()
         case card.MISSIONS:
-            return cy.get('.card-title').contains(card.MISSIONS).click()
+            return cy.get('.card-title').contains(card.MISSIONS).parent().next().click()
         case card.IOT_DEVICES:
-            return cy.get('.card-title').contains(card.IOT_DEVICES).click()
+            return cy.get('.card-title').contains(card.IOT_DEVICES).parent().next().click()
         case card.FOOD_INTAKE:
-            return cy.get('.card-title').contains(card.FOOD_INTAKE).click()
+            return cy.get('.card-title').contains(card.FOOD_INTAKE).parent().next().click()
         case card.ACTIVITY:
-            return cy.get('.card-title').contains(card.ACTIVITY).click()
+            return cy.get('.card-title').contains(card.ACTIVITY).parent().next().click()
         case card.PROFILE:
-            return cy.get('.card-title').contains(card.PROFILE).click()
+            return cy.get('.card-title').contains(card.PROFILE).parent().next().click()
     }
 })

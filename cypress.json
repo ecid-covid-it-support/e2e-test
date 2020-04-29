@@ -1,7 +1,9 @@
 {
     "baseUrl": "https://api.test.ocariot.tk:4041/v1",
     "integrationFolder": "./cypress/e2e",
-    "waitForAnimations": false,
+    "defaultCommandTimeout": 5000,
+    "pageLoadTimeout": 60000,
+    "responseTimeout": 500000,
     "env": {
         "dashboard_uri": "https://ocariot-87761.web.app/"
     },

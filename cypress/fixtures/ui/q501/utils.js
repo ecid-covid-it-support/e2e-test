@@ -64,7 +64,7 @@ Cypress.Commands.add("checkActivityFrequencyQuest", function (q501) {
 
     cy.get('.mat-button-wrapper').contains('concluir').click()
     cy.get('.modal-body').find('button').click()
-    cy.get('tbody tr td').eq(4).find('div').should('have.text', ' Completo ')
+    cy.get('tbody tr:eq(2)').prev().prev().find('div').should('have.text', ' Completo ')
 })
 
 Cypress.Commands.add("checkActivityFrequencyQuestIncomplete", function (q501) {

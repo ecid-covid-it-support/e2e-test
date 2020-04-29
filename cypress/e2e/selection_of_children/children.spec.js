@@ -50,7 +50,7 @@ describe('Selection of Children', () => {
             cy.registerGroupFromEducador(defaultEducator, defaultChildrenGroup)
             cy.visit(Cypress.env('dashboard_uri'))
             cy.loginUI(defaultEducator)
-            cy.checkChild(defaultChild01).click()
+            cy.checkChild(defaultChild01)
         })
 
         it('checking the children that are associated with the educator', () => {

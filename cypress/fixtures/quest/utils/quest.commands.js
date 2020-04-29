@@ -1,23 +1,23 @@
-Cypress.Commands.add("createQ501", (q501, accessToken) => {
+Cypress.Commands.add("createQuest", (resource, quest, accessToken) => {
     cy.request({
         method: 'POST',
-        url: '/q501physicalactivityforchildren',
+        url: `/${resource}`,
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer '.concat(accessToken)
         },
-        body: q501
+        body: quest
     }).then(response => response.body)
 })
 
-Cypress.Commands.add("updateQ501", (q501, accessToken) => {
+Cypress.Commands.add("updateQuest", (resource, quest, accessToken) => {
     cy.request({
         method: 'PATCH',
-        url: `/q501physicalactivityforchildren/${q501.id}`,
+        url: `/${resource}/${quest.id}`,
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer '.concat(accessToken)
         },
-        body: q501
+        body: quest
     }).then(response => response.body)
 })
