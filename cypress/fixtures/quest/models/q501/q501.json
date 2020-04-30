@@ -40,7 +40,7 @@
   "g_7": "4",
   "paqc_10": "1",
   "paqc_11": "I had the flu",
-  "percentage": "false, false, false, false, false",
-  "state": "Incomplete",
-  "scoring_PAQC": "1"
+  "percentage": "true, true, true, true, true",
+  "state": "Complete",
+  "scoring_PAQC": "2"
 }

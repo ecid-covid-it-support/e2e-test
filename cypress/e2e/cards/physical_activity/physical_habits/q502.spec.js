@@ -4,7 +4,7 @@ let defaultChild02 = require('../../../../fixtures/account/models/users/children
 let defaultChildrenGroup = require('../../../../fixtures/account/models/children-groups/group01.json')
 let defaultQ502 = require('../../../../fixtures/quest/models/q502/q502.json')
 let incompleteQ502 = require('../../../../fixtures/quest/models/q502/incompleteQ502.json')
-const card = require('../../../../fixtures/ui/cards.title')
+const cardSelector = require('../../../../fixtures/ui/cards.selector')
 const questDescription = require('../../../../fixtures/ui/quest.description')
 const questResource = require('../../../../fixtures/quest/utils/quest.resources')
 
@@ -59,7 +59,7 @@ describe('Q502PhysicalActivityandSedentaryHabits', () => {
             cy.loginUI(defaultEducator)
             cy.checkChild(defaultChild01)
             cy.selectChild(defaultChild01)
-            cy.selectCard(card.ACTIVITY)
+            cy.selectCard(cardSelector.ACTIVITY)
             cy.selectQuest(questDescription.PHYSICAL_HABITS)
             cy.checkPhysicalHabitsQuest(defaultQ502)
         })

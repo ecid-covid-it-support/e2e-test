@@ -4,6 +4,7 @@
     "defaultCommandTimeout": 5000,
     "pageLoadTimeout": 60000,
     "responseTimeout": 500000,
+    "video": false,
     "env": {
         "dashboard_uri": "https://ocariot-87761.web.app/"
     },
