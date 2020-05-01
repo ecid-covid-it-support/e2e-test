@@ -11,6 +11,10 @@ Cypress.Commands.add("checkPhysicalHabitsQuest", function (q502) {
                 .should('have.text', q502Page2Array[index])
         })
 
+    if (q502.transport_to_school === '6') { // 6: outro*
+        cy.get("input[id^='mat-input']").should('have.value', q502.another_way_expl)
+    }
+
     cy.get('.mat-button-wrapper').contains('próximo').click()
 
     // Page 3
@@ -35,18 +39,51 @@ Cypress.Commands.add("checkPhysicalHabitsQuest", function (q502) {
 
     cy.get('.mat-button-wrapper').contains('concluir').click()
     cy.get('.modal-body').find('button').click()
-    cy.get('tbody tr:eq(2)').prev().find('div').should('have.text', ' Completo ')
+    cy.checkQ502Status('Completo')
+})
+
+Cypress.Commands.add("checkQ502Status", function (status) {
+    cy.get('tbody tr:eq(2)')
+        .prev()
+        .find('div')
+        .should('have.text', status === 'Completo' ? ` ${status} ` : ` ${status}`)
+})
+
+Cypress.Commands.add("checkPhysicalHabitsQuestIncomplete", function (q502) {
+    cy.get('.mat-button-wrapper').contains('Iniciar Questionário').click()
+
+    // Page 2
+    const q502Page2Array = getQ502Page2(q502)
+    cy.get("div[id$='-1'") // #cdk-step-content-?-1
+        .find('.mat-select-value-text')
+        .each(($span, index) => {
+            cy.wrap($span)
+                .find('.ng-star-inserted')
+                .should('have.text', q502Page2Array[index])
+        })
+
+    cy.get('.mat-button-wrapper').contains('próximo').click()
+
+    // Page 3
+    cy.get("div[id$='-2'") // #cdk-step-content-?-2
+        .find('mat-radio-group')
+        .each(($radio_group) => {
+            cy.wrap($radio_group)
+                .find('.mat-radio-checked')
+                .should('attr', 'ng-reflect-value', q502.parents_sport)
+        })
+    cy.get("div[id$='-2'").find('#botonFinish').click()
+
+    cy.get('.mat-button-wrapper').contains('concluir').click()
+    cy.get('.modal-body').find('.btn-success').click()
+    cy.checkQ502Status('Incompleto 67%')
 })
 
 function getQ502Page2(q502) {
-    const array = []
-    let index = 0
-    array[index] = getTextTransportToSchool(q502.transport_to_school)
-    if (q502.transport_to_school === '6') { // 6: outro*
-        array[++index] = q502.another_way_expl
-    }
-    array[++index] = getTextTimeInTransportToSchool(q502.time_in_transport_to_school)
-    return array
+    return new Array(
+        getTextTransportToSchool(q502.transport_to_school),
+        getTextTimeInTransportToSchool(q502.time_in_transport_to_school)
+    )
 }
 
 function getQ502Page4(q502) {

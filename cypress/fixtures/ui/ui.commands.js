@@ -37,3 +37,9 @@ Cypress.Commands.add("selectCard", function (cardRouterLink) {
         cy.wait(2000)
     })
 })
+
+Cypress.Commands.add("checkNumberOfIncompleteQuestOnTheCard", function (cardRouterLink, numberOfIncompleteQuest) {
+    cy.get(`div[routerlink='/${cardRouterLink}']`)
+        .find('mat-icon')
+        .then($mt => expect($mt).to.have.text(`${numberOfIncompleteQuest}`))
+})

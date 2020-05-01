@@ -23,6 +23,6 @@
     "mobile_phone": "",
     "mobilephone_time_schooldays": "",
     "mobilephone_time_weekends": "",
-    "percentage": "false, false, false",
+    "percentage": "true, true, false",
     "state": "Incomplete"
 }
