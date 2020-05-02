@@ -1,6 +1,5 @@
 let defaultEducator = require('../../fixtures/account/models/users/educators/educator.json')
 let defaultChild01 = require('../../fixtures/account/models/users/children/child01.json')
-let childrenArray = require('../../fixtures/account/models/users/children/children.json')
 let defaultChildrenGroup = require('../../fixtures/account/models/children-groups/group01.json')
 
 describe('Selection of Children', () => {
@@ -31,25 +30,16 @@ describe('Selection of Children', () => {
         cy.task('questDBDispose')
     })
 
-    it('checking all children who are associated with a user', () => {
-        defaultChildrenGroup.children = [] // set children to new empty Array
+    it('When the child age is different from the possible ages', () => {
+        defaultChild01.age = '9.30'
 
-        childrenArray.forEach((child) => {
-            child.institution_id = state.institution_id
-            cy.createChild(child, state).then(childCreated => {
-                child.id = childCreated.id
-                defaultChildrenGroup.children.push(childCreated.id)
-            })
+        cy.createChild(defaultChild01, state).then(child => {
+            defaultChild01.id = child.id
+            defaultChildrenGroup.children.push(child.id)
         })
         cy.registerGroupFromEducador(defaultEducator, defaultChildrenGroup)
         cy.visit(Cypress.env('dashboard_uri'))
         cy.loginUI(defaultEducator)
-
-        cy.get('.mat-select').click()
-        cy.get('.mat-option').contains('10').then(($option) => $option[0].click())
-
-        childrenArray.forEach((child) => cy.checkChild(child))
-
-        cy.get('tbody').children().should('length', childrenArray.length)
+        cy.checkChild(defaultChild01)
     })
 })

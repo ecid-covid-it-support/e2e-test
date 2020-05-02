@@ -67,6 +67,12 @@ Cypress.Commands.add("checkActivityFrequencyQuest", function (q501) {
     cy.get('tbody tr:eq(2)').prev().prev().find('div').should('have.text', ' Completo ')
 })
 
+Cypress.Commands.add("checkQ501Status", function (status) {
+    cy.get('tbody tr:eq(0)')
+        .find('div')
+        .should('have.text', status === 'Completo' ? ` ${status} ` : ` ${status}`)
+})
+
 Cypress.Commands.add("checkActivityFrequencyQuestIncomplete", function (q501) {
     cy.get('.mat-button-wrapper').contains('Iniciar Questionário').click()
 
