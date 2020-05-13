@@ -3,7 +3,7 @@ Cypress.Commands.add("checkPhysicalHabitsQuest", function (q502) {
 
     // Page 2
     const q502Page2Array = getQ502Page2(q502)
-    cy.get("div[id$='-1'") // #cdk-step-content-?-1
+    cy.get("div[id$='-1']") // #cdk-step-content-?-1
         .find('.mat-select-value-text')
         .each(($span, index) => {
             cy.wrap($span)
@@ -18,18 +18,18 @@ Cypress.Commands.add("checkPhysicalHabitsQuest", function (q502) {
     cy.get('.mat-button-wrapper').contains('próximo').click()
 
     // Page 3
-    cy.get("div[id$='-2'") // #cdk-step-content-?-2
+    cy.get("div[id$='-2']") // #cdk-step-content-?-2
         .find('mat-radio-group')
         .each(($radio_group) => {
             cy.wrap($radio_group)
                 .find('.mat-radio-checked')
                 .should('attr', 'ng-reflect-value', q502.parents_sport)
         })
-    cy.get("div[id$='-2'").find('#botonFinish').click()
+    cy.get("div[id$='-2']").find('#botonFinish').click()
 
     // Page 4
     const q502Page4Array = getQ502Page4(q502)
-    cy.get("div[id$='-3'") // #cdk-step-content-?-1
+    cy.get("div[id$='-3']") // #cdk-step-content-?-3
         .find('.mat-select-value-text')
         .each(($span, index) => {
             cy.wrap($span)
@@ -54,7 +54,7 @@ Cypress.Commands.add("checkPhysicalHabitsQuestIncomplete", function (q502) {
 
     // Page 2
     const q502Page2Array = getQ502Page2(q502)
-    cy.get("div[id$='-1'") // #cdk-step-content-?-1
+    cy.get("div[id$='-1']") // #cdk-step-content-?-1
         .find('.mat-select-value-text')
         .each(($span, index) => {
             cy.wrap($span)
@@ -65,14 +65,23 @@ Cypress.Commands.add("checkPhysicalHabitsQuestIncomplete", function (q502) {
     cy.get('.mat-button-wrapper').contains('próximo').click()
 
     // Page 3
-    cy.get("div[id$='-2'") // #cdk-step-content-?-2
+    cy.get("div[id$='-2']") // #cdk-step-content-?-2
         .find('mat-radio-group')
         .each(($radio_group) => {
             cy.wrap($radio_group)
                 .find('.mat-radio-checked')
                 .should('attr', 'ng-reflect-value', q502.parents_sport)
         })
-    cy.get("div[id$='-2'").find('#botonFinish').click()
+    cy.get("div[id$='-2']").find('#botonFinish').click()
+
+    // Page 4
+    const emptyString = ''
+    cy.get("div[id$='-3']") // #cdk-step-content-?-3
+        .find('.mat-select-value')
+        .each(($span) => {
+            cy.wrap($span)
+                .should('have.value', emptyString)
+        })    
 
     cy.get('.mat-button-wrapper').contains('concluir').click()
     cy.get('.modal-body').find('.btn-success').click()

@@ -1,7 +1,7 @@
 Cypress.Commands.add("checkSleepHabitsQuest", function (q503) {
     // Single page
     const q503PageArray = getQ503PageArray(q503)
-    cy.get("div[id='principal'")
+    cy.get("div[id='principal']")
         .find('.mat-select-value-text')
         .each(($span, index) => {
             cy.wrap($span)

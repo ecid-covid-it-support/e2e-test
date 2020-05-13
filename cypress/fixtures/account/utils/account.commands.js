@@ -33,6 +33,18 @@ Cypress.Commands.add("createEducator", function (educator, state) {
     }).then(response => response.body)
 })
 
+Cypress.Commands.add("createFamily", function (family, state) {
+    cy.request({
+        method: 'POST',
+        url: '/families',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '.concat(state.accessTokenAdmin)
+        },
+        body: family
+    }).then(response => response.body)
+})
+
 Cypress.Commands.add("createChild", (child, state) => {
     cy.request({
         method: 'POST',

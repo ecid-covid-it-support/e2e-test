@@ -3,7 +3,7 @@ Cypress.Commands.add("checkActivityFrequencyQuest", function (q501) {
 
     // Page 2
     const q501Page2Array = getQ501Page2(q501)
-    cy.get("div[id$='-1'") // #cdk-step-content-?-1
+    cy.get("div[id$='-1']") // #cdk-step-content-?-1
         .find('mat-radio-group')
         .each(($radio_group, index) => {
             cy.wrap($radio_group)
@@ -14,29 +14,29 @@ Cypress.Commands.add("checkActivityFrequencyQuest", function (q501) {
 
     // Page 3
     const q501Page3Array = getQ501Page3(q501)
-    cy.get("div[id$='-2'") // #cdk-step-content-?-2
+    cy.get("div[id$='-2']") // #cdk-step-content-?-2
         .find('.mat-select-value-text')
         .each(($span, index) => {
             cy.wrap($span)
                 .find('.ng-star-inserted')
                 .should('have.text', q501Page3Array[index])
         })
-    cy.get("div[id$='-2'").find('#botonFinish').click()
+    cy.get("div[id$='-2']").find('#botonFinish').click()
 
     // Page 4
     const q501Page4Array = getQ501Page4(q501)
-    cy.get("div[id$='-3'") // #cdk-step-content-?-2
+    cy.get("div[id$='-3']") // #cdk-step-content-?-3
         .find('.mat-select-value-text')
         .each(($span, index) => {
             cy.wrap($span)
                 .find('.ng-star-inserted')
                 .should('have.text', q501Page4Array[index])
         })
-    cy.get("div[id$='-3'").find('#botonFinish').click()
+    cy.get("div[id$='-3']").find('#botonFinish').click()
 
     // Page 5
     const q501Page5Array = getQ501Page5(q501)
-    cy.get("div[id$='-4'") // #cdk-step-content-?-4
+    cy.get("div[id$='-4']") // #cdk-step-content-?-4
         .find('.example-radio-group')
         .each(($radio_group, index) => {
             cy.wrap($radio_group)
@@ -64,7 +64,7 @@ Cypress.Commands.add("checkActivityFrequencyQuest", function (q501) {
 
     cy.get('.mat-button-wrapper').contains('concluir').click()
     cy.get('.modal-body').find('button').click()
-    cy.get('tbody tr:eq(2)').prev().prev().find('div').should('have.text', ' Completo ')
+    cy.checkQ501Status('Completo')
 })
 
 Cypress.Commands.add("checkQ501Status", function (status) {
@@ -78,17 +78,51 @@ Cypress.Commands.add("checkActivityFrequencyQuestIncomplete", function (q501) {
 
     // Page 2
     const q501Page2Array = getQ501Page2(q501)
-    cy.get("div[id$='-1'") // #cdk-step-content-?-1
+    cy.get("div[id$='-1']") // #cdk-step-content-?-1
         .find('mat-radio-group')
         .each(($radio_group, index) => {
             cy.wrap($radio_group)
                 .find('.mat-radio-checked')
                 .should('attr', 'ng-reflect-value', q501Page2Array[index])
         })
-    cy.get('.mat-horizontal-stepper-header-container mat-step-header').eq(4).click()
+    cy.get('.mat-button-wrapper').contains('próximo').click()
+
+    // Page 3
+    const emptyString = ''
+    cy.get("div[id$='-2']") // #cdk-step-content-?-2
+        .find('.mat-select-value')
+        .each(($span) => {
+            cy.wrap($span)
+                .should('have.value', emptyString)
+        })
+    cy.get("div[id$='-2']").find('#botonFinish').click()
+
+    // Page 4
+    cy.get("div[id$='-3']") // #cdk-step-content-?-3
+        .find('.mat-select-value')
+        .each(($span) => {
+            cy.wrap($span)
+                .should('have.value', emptyString)
+        })
+    cy.get("div[id$='-3']").find('#botonFinish').click()
+
+    // Page 5
+    cy.get("div[id$='-4']") // #cdk-step-content-?-4
+        .find('.example-radio-group')
+        .each(($radio_group) => {
+            cy.wrap($radio_group)
+                .find('.mat-radio-checked')
+                .should('not.exist')
+        })
+    cy.get('mat-radio-group')
+        .eq(23)
+        .find('.mat-radio-checked')
+        .should('not.exist')
+
     cy.get('.mat-button-wrapper').contains('concluir').click()
     cy.get('.modal-content').find('.btn-success').click()
-    cy.get('tbody tr td').eq(4).find('div').should('have.text', ' Incompleto 25%')
+    cy.checkQ501Status('Incompleto 25%')
+
 })
 
 function getQ501Page2(q501) {

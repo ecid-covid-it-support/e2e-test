@@ -1,6 +1,7 @@
 import './q501/q501.commands'
 import './q502/q502.commands'
 import './q503/q503.commands'
+import './q23ipaq/q23.commands'
 
 Cypress.Commands.add("loginUI", function (user) {
     cy.get('[ng-reflect-name=username]')
@@ -10,6 +11,17 @@ Cypress.Commands.add("loginUI", function (user) {
         .type(user.password).should('have.value', user.password)
 
     cy.get('.btn-lg').click()
+})
+
+Cypress.Commands.add("familyFirstLogin", function (family) {
+    cy.get('.modal-content')
+    cy.get('#old_pwd').type(family.password)
+    cy.get('#new_pwd').type(family.password)
+    cy.get('#save')
+        .click()
+        .then(() => {
+            cy.get('.close').click()
+        })
 })
 
 Cypress.Commands.add("checkChild", function (child) {
