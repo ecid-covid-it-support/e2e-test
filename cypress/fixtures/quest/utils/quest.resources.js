@@ -1,5 +1,5 @@
 export default Object.freeze({
-    Q1SocioDemographic: 'q1sociodemographic',
+    Q1SocioDemographic: 'q1sociodemographics',
     Q21ChildHealthConditions: 'q21childshealthconditions',
     Q22ParentsHealthConditions: 'q22parentshealthconditions',
     Q23IPAQ: 'q23ipaq',
