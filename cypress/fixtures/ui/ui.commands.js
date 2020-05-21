@@ -31,7 +31,7 @@ Cypress.Commands.add("familyFirstLogin", function (family) {
 Cypress.Commands.add("checkChild", function (child) {
     cy.contains(child.username).parent('tr').then(($tr) => {
         cy.get($tr).find('.cdk-column-name').then($td => expect($td).to.have.text(` ${child.username}`))
-        cy.get($tr).find('.cdk-column-gender').then($td => expect($td).to.have.text(` ${child.gender === 'male' ? 'Masculino' : 'Feminino'} `))
+        cy.get($tr).find('.cdk-column-gender').then($td => expect($td).to.have.text(` ${child.gender === 'male' ? 'Male' : 'Female'} `))
         cy.get($tr).find('.cdk-column-class').then($td => expect($td).to.have.text(` 4th Grade `))
         cy.get($tr).find('.cdk-column-birth').then($td => expect($td).to.have.text(`${Math.floor(child.age)}`))
     })

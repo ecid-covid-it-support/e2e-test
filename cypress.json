@@ -6,7 +6,7 @@
     "responseTimeout": 500000,
     "video": false,
     "env": {
-        "dashboard_uri": "https://ocariot-87761.web.app/"
+        "dashboard_uri": "https://ocariot-en-5-1.web.app"
     },
     "reporter": "cypress-multi-reporters",
     "reporterOptions": {
