@@ -1,7 +1,6 @@
 import './q501/q501.commands'
 import './q502/q502.commands'
 import './q503/q503.commands'
-import './q23ipaq/q23.commands'
 import './q1sociodemographic/q1sociodemographic.commands'
 import './q602/q602.commands'
 import './q22/q22.commands'
@@ -53,13 +52,6 @@ Cypress.Commands.add("selectCard", function (cardRouterLink) {
         div.click()
         cy.wait(2000)
     })
-})
-
-Cypress.Commands.add("checkQuestStatus", function (status) {
-    cy.get('tbody tr:eq(2)')
-        .prev()
-        .find('div')
-        .should('have.text', status === 'Completo' ? ` ${status} ` : ` ${status}`)
 })
 
 Cypress.Commands.add("checkNumberOfIncompleteQuestOnTheCard", function (cardRouterLink, numberOfIncompleteQuest) {

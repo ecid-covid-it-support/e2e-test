@@ -53,7 +53,7 @@ describe('Q502PhysicalActivityandSedentaryHabits', () => {
         cy.selectChild(defaultChild01)
         cy.checkNumberOfIncompleteQuestOnTheCard(cardSelector.ACTIVITY, 3)
         cy.selectCard(cardSelector.ACTIVITY)
-        cy.checkQ502Status('Incompleto 67%')
+        cy.checkQ502Status('Incomplete 67%')
         cy.selectQuest(questDescription.PHYSICAL_HABITS)
         cy.checkPhysicalHabitsQuestIncomplete(incompleteQ502)
     })

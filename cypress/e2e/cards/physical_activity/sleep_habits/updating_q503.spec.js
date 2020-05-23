@@ -52,15 +52,15 @@ describe('Q503SleepingHabits', () => {
         cy.selectChild(defaultChild01)
         cy.checkNumberOfIncompleteQuestOnTheCard(cardSelector.ACTIVITY, 2)
         cy.selectCard(cardSelector.ACTIVITY)
-        cy.checkQ503Status('Completo')
+        cy.checkQ503Status('Complete')
         cy.selectQuest(questDescription.SLEEP_HABITS)
         cy.checkSleepHabitsQuest(updatedQ503)
     })
 })
 
 async function fillingQ503(q503) {
-    q503.time_wake_up = '3'
-    q503.time_nap = '2'
+    q503.time_wake_up = '4'
+    q503.time_nap = '1'
     q503.percentage = 'true'
     q503.state = 'Complete'
     return q503

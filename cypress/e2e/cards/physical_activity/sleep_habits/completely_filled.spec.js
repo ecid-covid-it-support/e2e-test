@@ -48,7 +48,7 @@ describe('Q503SleepingHabits', () => {
         cy.selectChild(defaultChild01)
         cy.checkNumberOfIncompleteQuestOnTheCard(cardSelector.ACTIVITY, 2)
         cy.selectCard(cardSelector.ACTIVITY)
-        cy.checkQ503Status('Completo')
+        cy.checkQ503Status('Complete')
         cy.selectQuest(questDescription.SLEEP_HABITS)
         cy.checkSleepHabitsQuest(completeQ503)
     })

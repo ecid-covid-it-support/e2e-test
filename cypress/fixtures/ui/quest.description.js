@@ -1,12 +1,13 @@
 export default Object.freeze({
-    ACTIVITY_FREQUENCY: 'Frequência de atividade física',
-    PHYSICAL_HABITS: 'Hábitos de atividade física',
-    SLEEP_HABITS: 'Hábitos de sono',
-    FOOD_FREQUENCY: 'Questionário de Frequência Alimentar',
-    FOOD_HABITS: 'Hábitos',
-    PARENTS_ACTIVITY: 'Atividade Física dos Pais',
-    SOCIO_DEMOGRAPHICS: 'Dados Sociodemográficos - Baseline',
-    CHILD_HEALTH_CONDITIONS: 'Condições de Saúde da Criança - Baseline',
-    PARENTS_HEALTH_CONDITIONS: 'Condições de Saúde dos Pais - Baseline',
-    SELF_PERCEPTION: 'Auto-percepção - Baseline'
+    ACTIVITY_FREQUENCY: 'Physical activity questionnaire for children - Baseline',
+    PHYSICAL_HABITS: 'Physical activity and sedentary habits questionnaire - Baseline',
+    SLEEP_HABITS: 'Sleeping habits questionnaire - Baseline',
+
+    FOOD_FREQUENCY: 'Food frequency questionnaire - Baseline',
+    FOOD_HABITS: 'Eating habits and behaviors - Baseline',
+    FOOD_BEHAVIOUR: 'Eating behaviour of children - Baseline',
+
+    SOCIO_DEMOGRAPHICS: 'Sociodemographic data - Baseline',
+    CHILD_HEALTH_CONDITIONS: 'Child health condition - Baseline',
+    PARENTS_HEALTH_CONDITIONS: 'Parent health condition - Baseline',
 })

@@ -56,7 +56,7 @@ describe('Q502PhysicalActivityandSedentaryHabits', () => {
         cy.selectChild(defaultChild01)
         cy.checkNumberOfIncompleteQuestOnTheCard(cardSelector.ACTIVITY, 2)
         cy.selectCard(cardSelector.ACTIVITY)
-        cy.checkQ502Status('Completo')
+        cy.checkQ502Status('Complete')
         cy.selectQuest(questDescription.PHYSICAL_HABITS)
         cy.checkPhysicalHabitsQuest(updatedQ502)
     })
@@ -66,8 +66,10 @@ function fillQ502(q502) {
     q502.transport_to_school = '6' // outro*
     q502.another_way_expl = 'helicopter'
 
+    q502.parents_sport = '2'
     q502.screen_time_schooldays = '2'
     q502.screen_time_weekends = '3'
+    q502.mobile_phone = '1'
     q502.mobilephone_time_schooldays = '4'
     q502.mobilephone_time_weekends = '6'
     q502.percentage = 'true, true, true'

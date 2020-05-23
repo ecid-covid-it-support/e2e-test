@@ -53,7 +53,7 @@ describe('Q501PhysicalActivityForChildren', () => {
         cy.selectChild(defaultChild01)
         cy.checkNumberOfIncompleteQuestOnTheCard(cardSelector.ACTIVITY, 2)
         cy.selectCard(cardSelector.ACTIVITY)
-        cy.checkQ501Status('Completo')
+        cy.checkQ501Status('Complete')
         cy.selectQuest(questDescription.ACTIVITY_FREQUENCY)
         cy.checkActivityFrequencyQuest(completeQ501)
     })
