@@ -1,5 +1,5 @@
 Cypress.Commands.add("checkQ21ChildHealthConditions", function (q21) {
-    cy.get('.mat-button-wrapper').contains('Iniciar Questionário').click()
+    cy.get('.mat-button-wrapper').contains('Start Questionnaire').click()
 
     // Page 2
     const answersRadioGroupPageTwo = getAnswersRadioGroupPageTwo(q21)
@@ -18,7 +18,7 @@ Cypress.Commands.add("checkQ21ChildHealthConditions", function (q21) {
             cy.wrap($input)
                 .should('have.value', answersInputPageTwo[index])
         })
-    cy.get('.mat-button-wrapper').contains('próximo').click()
+    cy.get('.mat-button-wrapper').contains('next').click()
 
     // Page 3
     const answersRadioGroupPageTree = [q21.weight_height_birth, q21.menarche]
@@ -49,19 +49,19 @@ Cypress.Commands.add("checkQ21ChildHealthConditions", function (q21) {
                 })
         })
 
-    cy.get('.mat-button-wrapper').contains('concluir').click()
+    cy.get('.mat-button-wrapper').contains('finish').click()
     cy.get('.modal-body > p')
-        .should('have.text', ' Questionário preenchido com sucesso ')
+        .should('have.text', ' Questionnaire completed successfully ')
         .parent()
         .find('button').click()
-    cy.checkQ21Status('Completo')
+    cy.checkQ21Status('Complete')
 })
 
 Cypress.Commands.add("checkQ21Status", function (status) {
-    cy.get('div').contains('Questionários').click()
+    cy.get('div').contains('Questionnaires').click()
     cy.get('tbody tr:eq(1)')
         .find('div')
-        .should('have.text', status === 'Completo' ? ` ${status} ` : ` ${status}`)
+        .should('have.text', status === 'Complete' ? ` ${status} ` : ` ${status}`)
 })
 
 function getAnswersRadioGroupPageTwo(q21) {
@@ -84,25 +84,25 @@ function getAnswersInputPageTree(q21) {
 
 function getAnswerSelectPageTree(q21) {
     return new Array(
-        getSelecText(q21.breastfeeding_practice),
-        getSelecText(q21.breastfeeding_exclusive)
+        getSelecText(q21.breastfeeding_practice, false),
+        getSelecText(q21.breastfeeding_exclusive, true)
     )
 }
 
-function getSelecText(option) {
+function getSelecText(option, isExclusive) {
     switch (option) {
         case '1':
-            return 'Não sei'
+            return "Don't know"
         case '2':
-            return 'A criança não foi amamentada'
+            return isExclusive ? 'I never exclusively breast-fed my son/daughter' : 'My son/daughter has not been breast-fed'
         case '3':
-            return 'Menos de 1 mês'
+            return 'Less than a month'
         case '4':
-            return '1-3 meses'
+            return '1-3 months'
         case '5':
-            return '3-4 meses'
+            return '3-4 months'
         case '6':
-            return '4-5 meses'
+            return '4-5 months'
         default:
             return ''
     }

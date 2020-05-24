@@ -9,6 +9,5 @@ export default Object.freeze({
     Q502PhysicalActivityandSedentaryHabits: 'q502physicalactivityandsedentaryhabits',
     Q503SleepingHabits: 'q503sleepinghabits',
     Q601ChildEatingBehaviour: 'q601childeatingbehaviour',
-    Q602Autoperception: 'q602autoperception',
     QFoodtracking: 'qFoodtracking'
 })

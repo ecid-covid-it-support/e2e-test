@@ -2,7 +2,6 @@ import './q501/q501.commands'
 import './q502/q502.commands'
 import './q503/q503.commands'
 import './q1sociodemographic/q1sociodemographic.commands'
-import './q602/q602.commands'
 import './q22/q22.commands'
 import './q21/q21.commands'
 
