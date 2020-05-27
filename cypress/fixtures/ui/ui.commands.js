@@ -4,6 +4,10 @@ import './q503/q503.commands'
 import './q1sociodemographic/q1sociodemographic.commands'
 import './q22/q22.commands'
 import './q21/q21.commands'
+import './q401/q401.commands'
+import './q402/q402.commands'
+import './q601/q601.commands'
+import './qfoodtracking/breakfast.commands'
 
 Cypress.Commands.add("loginUI", function (user) {
     cy.get('[ng-reflect-name=username]')

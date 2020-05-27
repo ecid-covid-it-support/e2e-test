@@ -10,4 +10,6 @@ export default Object.freeze({
     SOCIO_DEMOGRAPHICS: 'Sociodemographic data - Baseline',
     CHILD_HEALTH_CONDITIONS: 'Child health condition - Baseline',
     PARENTS_HEALTH_CONDITIONS: 'Parent health condition - Baseline',
+
+    BREAKFAST: 'Breakfast',
 })
