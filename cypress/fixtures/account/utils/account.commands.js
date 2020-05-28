@@ -57,6 +57,18 @@ Cypress.Commands.add("createChild", (child, state) => {
     }).then(response => response.body)
 })
 
+Cypress.Commands.add("createApplication", (application, state) => {
+    cy.request({
+        method: 'POST',
+        url: '/applications',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '.concat(state.accessTokenAdmin)
+        },
+        body: application
+    }).then(response => response.body)
+})
+
 Cypress.Commands.add("registerGroupFromEducador", (educator, children_group) => {
     cy.auth(educator.username, educator.password)
         .then((response) => {
