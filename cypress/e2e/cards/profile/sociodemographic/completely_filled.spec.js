@@ -3,7 +3,8 @@ let defaultChild01 = require('../../../../fixtures/account/models/users/children
 let completeQ1SocioDemographic = require('../../../../fixtures/quest/models/q1sociodemographic/q1SocioDemographic.json')
 const cardSelector = require('../../../../fixtures/ui/cards.selector')
 const questDescription = require('../../../../fixtures/ui/quest.description')
-const questResource = require('../../../../fixtures/quest/utils/quest.resources')
+const user = require('../../../../fixtures/account/utils/account.resources')
+const quest = require('../../../../fixtures/quest/utils/quest.resources')
 
 describe('Q1SocioDemographic', () => {
     let state = {}
@@ -20,11 +21,13 @@ describe('Q1SocioDemographic', () => {
             defaultFamily.institution_id = institution.id
             defaultChild01.institution_id = institution.id
         })
-        cy.createChild(defaultChild01, state).then(child => {
+        cy.createUser(user.CHILD, defaultChild01, state).then(child => {
             defaultChild01.id = child.id
             defaultFamily.children.push(child.id)
         })
-        cy.createFamily(defaultFamily, state).then(family => defaultFamily.id = family.id)
+        cy.createUser(user.FAMILY, defaultFamily, state)
+            .then(family => defaultFamily.id = family.id)
+
         cy.auth(defaultFamily.username, defaultFamily.password)
             .then(accessToken => accessTokenDefaultFamily = accessToken)
     })
@@ -41,7 +44,7 @@ describe('Q1SocioDemographic', () => {
         completeQ1SocioDemographic.child_age = Math.floor(defaultChild01.age)
         completeQ1SocioDemographic.ages_household_members.push(Math.floor(defaultChild01.age))
         completeQ1SocioDemographic.number_of_household_members = completeQ1SocioDemographic.ages_household_members.length
-        cy.createQuest(questResource.Q1SocioDemographic, completeQ1SocioDemographic, accessTokenDefaultFamily)
+        cy.createQuest(quest.Q1SocioDemographic, completeQ1SocioDemographic, accessTokenDefaultFamily)
 
         cy.visit(Cypress.env('dashboard_uri'))
         cy.loginUI(defaultFamily)

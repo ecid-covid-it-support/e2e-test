@@ -5,9 +5,10 @@ let defaultChildrenGroup = require('../../../fixtures/account/models/children-gr
 let weight = require('../../../fixtures/tracking/models/weights/weight.json')
 let institutionEnv = require('../../../fixtures/tracking/models/institutions.environments/environment.json')
 const cardSelector = require('../../../fixtures/ui/cards.selector')
-const trackingResource = require('../../../fixtures/tracking/utils/tracking.resources')
+const user = require('../../../fixtures/account/utils/account.resources')
+const tracking = require('../../../fixtures/tracking/utils/tracking.resources')
 
-describe('Iot Devices', () => {
+describe('IoT Devices', () => {
     let state = {}
     let accessTokenDefaultEducator = null
     let accessTokenDefaultApplication = null
@@ -24,9 +25,13 @@ describe('Iot Devices', () => {
             defaultChild01.institution_id = institution.id
             defaultApplication.institution_id = institution.id
         })
-        cy.createEducator(defaultEducator, state).then(educador => defaultEducator.id = educador.id)
-        cy.createApplication(defaultApplication, state).then(app => defaultApplication.id = app.id)
-        cy.createChild(defaultChild01, state).then(child => {
+        cy.createUser(user.EDUCATOR, defaultEducator, state)
+            .then(educador => defaultEducator.id = educador.id)
+
+        cy.createUser(user.APPLICATION, defaultApplication, state)
+            .then(app => defaultApplication.id = app.id)
+
+        cy.createUser(user.CHILD, defaultChild01, state).then(child => {
             defaultChild01.id = child.id
             defaultChildrenGroup.children.push(child.id)
         })
@@ -48,7 +53,7 @@ describe('Iot Devices', () => {
     })
 
     it('When Iot Devices register measurements', () => {
-        cy.createTrackingResource(trackingResource.Weights, defaultChild01.id, weight, accessTokenDefaultEducator)
+        cy.createTrackingResource(tracking.Weights, defaultChild01.id, weight, accessTokenDefaultEducator)
         cy.createInstitutionEnv(defaultChild01.institution_id, institutionEnv, accessTokenDefaultApplication)
 
         cy.visit(Cypress.env('dashboard_uri'))

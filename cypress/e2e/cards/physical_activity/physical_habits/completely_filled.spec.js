@@ -5,7 +5,8 @@ let defaultChildrenGroup = require('../../../../fixtures/account/models/children
 let completeQ502 = require('../../../../fixtures/quest/models/q502/q502.json')
 const cardSelector = require('../../../../fixtures/ui/cards.selector')
 const questDescription = require('../../../../fixtures/ui/quest.description')
-const questResource = require('../../../../fixtures/quest/utils/quest.resources')
+const user = require('../../../../fixtures/account/utils/account.resources')
+const quest = require('../../../../fixtures/quest/utils/quest.resources')
 
 describe('Q502PhysicalActivityandSedentaryHabits', () => {
     let state = {}
@@ -23,12 +24,14 @@ describe('Q502PhysicalActivityandSedentaryHabits', () => {
             defaultChild01.institution_id = institution.id
             defaultChild02.institution_id = institution.id
         })
-        cy.createEducator(defaultEducator, state).then(educador => defaultEducator.id = educador.id)
-        cy.createChild(defaultChild01, state).then(child => {
+        cy.createUser(user.EDUCATOR, defaultEducator, state)
+            .then(educador => defaultEducator.id = educador.id)
+
+        cy.createUser(user.CHILD, defaultChild01, state).then(child => {
             defaultChild01.id = child.id
             defaultChildrenGroup.children.push(child.id)
         })
-        cy.createChild(defaultChild02, state).then(child => {
+        cy.createUser(user.CHILD, defaultChild02, state).then(child => {
             defaultChildrenGroup.children.push(child.id)
         })
         cy.registerGroupFromEducador(defaultEducator, defaultChildrenGroup)
@@ -45,7 +48,7 @@ describe('Q502PhysicalActivityandSedentaryHabits', () => {
 
     it('When Q502PhysicalActivityandSedentaryHabits was completely filled', () => {
         completeQ502.child_id = defaultChild01.username
-        cy.createQuest(questResource.Q502PhysicalActivityandSedentaryHabits, completeQ502, accessTokenDefaultEducator)
+        cy.createQuest(quest.Q502PhysicalActivityandSedentaryHabits, completeQ502, accessTokenDefaultEducator)
 
         cy.visit(Cypress.env('dashboard_uri'))
         cy.loginUI(defaultEducator)

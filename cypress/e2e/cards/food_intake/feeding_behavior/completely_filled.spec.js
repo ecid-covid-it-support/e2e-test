@@ -4,7 +4,8 @@ let defaultChildrenGroup = require('../../../../fixtures/account/models/children
 let completeQ402 = require('../../../../fixtures/quest/models/q402/q402.json')
 const cardSelector = require('../../../../fixtures/ui/cards.selector')
 const questDescription = require('../../../../fixtures/ui/quest.description')
-const questResource = require('../../../../fixtures/quest/utils/quest.resources')
+const user = require('../../../../fixtures/account/utils/account.resources')
+const quest = require('../../../../fixtures/quest/utils/quest.resources')
 
 describe('Q402FoodHabitsandFeedingBehaviours', () => {
     let state = {}
@@ -21,8 +22,10 @@ describe('Q402FoodHabitsandFeedingBehaviours', () => {
             defaultEducator.institution_id = institution.id
             defaultChild01.institution_id = institution.id
         })
-        cy.createEducator(defaultEducator, state).then(educador => defaultEducator.id = educador.id)
-        cy.createChild(defaultChild01, state).then(child => {
+        cy.createUser(user.EDUCATOR, defaultEducator, state)
+            .then(educador => defaultEducator.id = educador.id)
+
+        cy.createUser(user.CHILD, defaultChild01, state).then(child => {
             defaultChild01.id = child.id
             defaultChildrenGroup.children.push(child.id)
         })
@@ -40,7 +43,7 @@ describe('Q402FoodHabitsandFeedingBehaviours', () => {
 
     it('When Q402FoodHabitsandFeedingBehaviours was completely filled', () => {
         completeQ402.child_id = defaultChild01.username
-        cy.createQuest(questResource.Q402FoodHabitsandFeedingBehaviours, completeQ402, accessTokenDefaultEducator)
+        cy.createQuest(quest.Q402FoodHabitsandFeedingBehaviours, completeQ402, accessTokenDefaultEducator)
 
         cy.visit(Cypress.env('dashboard_uri'))
         cy.loginUI(defaultEducator)

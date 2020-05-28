@@ -4,7 +4,8 @@ let defaultChildrenGroup = require('../../../../fixtures/account/models/children
 let breakfastQuest = require('../../../../fixtures/quest/models/qfoodtracking/breakfast.json')
 const cardSelector = require('../../../../fixtures/ui/cards.selector')
 const questDescription = require('../../../../fixtures/ui/quest.description')
-const questResource = require('../../../../fixtures/quest/utils/quest.resources')
+const user = require('../../../../fixtures/account/utils/account.resources')
+const quest = require('../../../../fixtures/quest/utils/quest.resources')
 
 describe('QFoodTracking - Breakfast', () => {
     let state = {}
@@ -21,8 +22,10 @@ describe('QFoodTracking - Breakfast', () => {
             defaultEducator.institution_id = institution.id
             defaultChild01.institution_id = institution.id
         })
-        cy.createEducator(defaultEducator, state).then(educador => defaultEducator.id = educador.id)
-        cy.createChild(defaultChild01, state).then(child => {
+        cy.createUser(user.EDUCATOR, defaultEducator, state)
+            .then(educador => defaultEducator.id = educador.id)
+
+        cy.createUser(user.CHILD, defaultChild01, state).then(child => {
             defaultChild01.id = child.id
             defaultChildrenGroup.children.push(child.id)
         })
@@ -40,7 +43,7 @@ describe('QFoodTracking - Breakfast', () => {
 
     it('When registered QFoodTracking successfully', () => {
         breakfastQuest.child_id = defaultChild01.username
-        cy.createQuest(questResource.QFoodtracking, breakfastQuest, accessTokenDefaultEducator)
+        cy.createQuest(quest.QFoodtracking, breakfastQuest, accessTokenDefaultEducator)
 
         cy.visit(Cypress.env('dashboard_uri'))
         cy.loginUI(defaultEducator)

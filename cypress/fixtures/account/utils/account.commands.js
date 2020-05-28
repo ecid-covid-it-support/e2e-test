@@ -21,51 +21,15 @@ Cypress.Commands.add("createInstitution", (state) => {
     }).then(response => response.body)
 })
 
-Cypress.Commands.add("createEducator", function (educator, state) {
+Cypress.Commands.add("createUser", function (resource, user, state) {
     cy.request({
         method: 'POST',
-        url: '/educators',
+        url: `${resource}`,
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer '.concat(state.accessTokenAdmin)
         },
-        body: educator
-    }).then(response => response.body)
-})
-
-Cypress.Commands.add("createFamily", function (family, state) {
-    cy.request({
-        method: 'POST',
-        url: '/families',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer '.concat(state.accessTokenAdmin)
-        },
-        body: family
-    }).then(response => response.body)
-})
-
-Cypress.Commands.add("createChild", (child, state) => {
-    cy.request({
-        method: 'POST',
-        url: '/children',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer '.concat(state.accessTokenAdmin)
-        },
-        body: child
-    }).then(response => response.body)
-})
-
-Cypress.Commands.add("createApplication", (application, state) => {
-    cy.request({
-        method: 'POST',
-        url: '/applications',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer '.concat(state.accessTokenAdmin)
-        },
-        body: application
+        body: user
     }).then(response => response.body)
 })
 

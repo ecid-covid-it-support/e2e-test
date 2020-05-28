@@ -2,6 +2,7 @@ let defaultEducator = require('../../fixtures/account/models/users/educators/edu
 let defaultChild01 = require('../../fixtures/account/models/users/children/child01.json')
 let childrenArray = require('../../fixtures/account/models/users/children/children.json')
 let defaultChildrenGroup = require('../../fixtures/account/models/children-groups/group01.json')
+const user = require('../../fixtures/account/utils/account.resources')
 
 describe('Selection of Children', () => {
     let state = {}
@@ -19,7 +20,9 @@ describe('Selection of Children', () => {
             defaultEducator.institution_id = institution.id
             defaultChild01.institution_id = institution.id
         })
-        cy.createEducator(defaultEducator, state).then(educador => defaultEducator.id = educador.id)
+        cy.createUser(user.EDUCATOR, defaultEducator, state)
+            .then(educador => defaultEducator.id = educador.id)
+
         cy.auth(defaultEducator.username, defaultEducator.password)
             .then(accessToken => accessTokenDefaultEducator = accessToken)
     })
@@ -36,7 +39,7 @@ describe('Selection of Children', () => {
 
         childrenArray.forEach((child) => {
             child.institution_id = state.institution_id
-            cy.createChild(child, state).then(childCreated => {
+            cy.createUser(user.CHILD, child, state).then(childCreated => {
                 child.id = childCreated.id
                 defaultChildrenGroup.children.push(childCreated.id)
             })

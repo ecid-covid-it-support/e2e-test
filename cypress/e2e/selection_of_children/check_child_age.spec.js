@@ -1,6 +1,7 @@
 let defaultEducator = require('../../fixtures/account/models/users/educators/educator.json')
 let defaultChild01 = require('../../fixtures/account/models/users/children/child01.json')
 let defaultChildrenGroup = require('../../fixtures/account/models/children-groups/group01.json')
+const user = require('../../fixtures/account/utils/account.resources')
 
 describe('Selection of Children', () => {
     let state = {}
@@ -18,7 +19,9 @@ describe('Selection of Children', () => {
             defaultEducator.institution_id = institution.id
             defaultChild01.institution_id = institution.id
         })
-        cy.createEducator(defaultEducator, state).then(educador => defaultEducator.id = educador.id)
+        cy.createUser(user.EDUCATOR, defaultEducator, state)
+            .then(educador => defaultEducator.id = educador.id)
+
         cy.auth(defaultEducator.username, defaultEducator.password)
             .then(accessToken => accessTokenDefaultEducator = accessToken)
     })
@@ -38,7 +41,7 @@ describe('Selection of Children', () => {
 
         defaultChild01.age_calc_date = currentDate.toISOString().substring(0, 10) // xxxx-xx-xx
 
-        cy.createChild(defaultChild01, state).then(child => {
+        cy.createUser(user.CHILD, defaultChild01, state).then(child => {
             defaultChild01.id = child.id
             defaultChildrenGroup.children.push(child.id)
         })

@@ -3,7 +3,8 @@ let defaultChild02 = require('../../../../fixtures/account/models/users/children
 let completeQ21 = require('../../../../fixtures/quest/models/q21/q21.json')
 const cardSelector = require('../../../../fixtures/ui/cards.selector')
 const questDescription = require('../../../../fixtures/ui/quest.description')
-const questResource = require('../../../../fixtures/quest/utils/quest.resources')
+const user = require('../../../../fixtures/account/utils/account.resources')
+const quest = require('../../../../fixtures/quest/utils/quest.resources')
 
 describe('Q21ChildHealthConditions', () => {
     let state = {}
@@ -20,11 +21,13 @@ describe('Q21ChildHealthConditions', () => {
             defaultFamily.institution_id = institution.id
             defaultChild02.institution_id = institution.id
         })
-        cy.createChild(defaultChild02, state).then(child => {
+        cy.createUser(user.CHILD, defaultChild02, state).then(child => {
             defaultChild02.id = child.id
             defaultFamily.children.push(child.id)
         })
-        cy.createFamily(defaultFamily, state).then(family => defaultFamily.id = family.id)
+        cy.createUser(user.FAMILY, defaultFamily, state)
+            .then(family => defaultFamily.id = family.id)
+
         cy.auth(defaultFamily.username, defaultFamily.password)
             .then(accessToken => accessTokenDefaultFamily = accessToken)
     })
@@ -38,7 +41,7 @@ describe('Q21ChildHealthConditions', () => {
 
     it('When Q21ChildHealthConditions was completely filled', () => {
         completeQ21.child_id = defaultChild02.username
-        cy.createQuest(questResource.Q21ChildHealthConditions, completeQ21, accessTokenDefaultFamily)
+        cy.createQuest(quest.Q21ChildHealthConditions, completeQ21, accessTokenDefaultFamily)
 
         cy.visit(Cypress.env('dashboard_uri'))
         cy.loginUI(defaultFamily)
