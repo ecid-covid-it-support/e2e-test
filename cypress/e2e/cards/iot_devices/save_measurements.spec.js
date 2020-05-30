@@ -15,8 +15,10 @@ describe('IoT Devices', () => {
 
     before(() => {
         cy.task('accountDBConnect')
+        cy.task('trackingDBConnect')
         cy.task('questDBConnect')
         cy.task('cleanAccountDB')
+        cy.task('cleanTrackingDB')
         cy.task('cleanQuestDB')
 
         cy.auth('admin', 'admin123').then(accessToken => state.accessTokenAdmin = accessToken)
@@ -47,8 +49,10 @@ describe('IoT Devices', () => {
 
     after(() => {
         cy.task('cleanAccountDB')
+        cy.task('cleanTrackingDB')
         cy.task('cleanQuestDB')
         cy.task('accountDBDispose')
+        cy.task('trackingDBDispose')
         cy.task('questDBDispose')
     })
 

@@ -108,7 +108,7 @@ class TrackingDb {
             const result = await this._connection.db
                 .listCollections({
                     $or: [
-                        { name: 'institutions.environments' },
+                        { name: 'environments' },
                         { name: 'physicalactivities' },
                         { name: 'logs' },
                         { name: 'measurements' },
