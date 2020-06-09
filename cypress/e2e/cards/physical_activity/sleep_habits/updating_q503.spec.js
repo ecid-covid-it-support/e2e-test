@@ -45,9 +45,10 @@ describe('Q503SleepingHabits', () => {
         emptyQ503.child_id = defaultChild01.username
         emptyQ503.time_sleep = '5'
         cy.createQuest(quest.Q503SleepingHabits, emptyQ503, accessTokenDefaultEducator)
+            .then(q503Created => emptyQ503.id = q503Created.id)
 
-        const updatedQ503 = fillingQ503({ ...emptyQ503 })
-        cy.updateQuest(quest.Q503SleepingHabits, updatedQ503, accessTokenDefaultEducator)
+        completeQ503Fields(emptyQ503)
+        cy.updateQuest(quest.Q503SleepingHabits, emptyQ503, accessTokenDefaultEducator)
 
         cy.visit(Cypress.env('dashboard_uri'))
         cy.loginUI(defaultEducator)
@@ -57,11 +58,11 @@ describe('Q503SleepingHabits', () => {
         cy.selectCard(cardSelector.ACTIVITY)
         cy.checkQ503Status('Complete')
         cy.selectQuest(questDescription.SLEEP_HABITS)
-        cy.checkSleepHabitsQuest(updatedQ503)
+        cy.checkSleepHabitsQuest(emptyQ503)
     })
 })
 
-async function fillingQ503(q503) {
+async function completeQ503Fields(q503) {
     q503.time_wake_up = '4'
     q503.time_nap = '1'
     q503.percentage = 'true'

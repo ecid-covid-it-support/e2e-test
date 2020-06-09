@@ -48,10 +48,12 @@ describe('Q502PhysicalActivityandSedentaryHabits', () => {
 
     it('When updating Q502PhysicalActivityandSedentaryHabits filling it completely', () => {
         incompleteQ502.child_id = defaultChild01.username
-        cy.createQuest(quest.Q502PhysicalActivityandSedentaryHabits, incompleteQ502, accessTokenDefaultEducator)
+        cy.createQuest(quest.Q502PhysicalActivityandSedentaryHabits,
+            incompleteQ502, accessTokenDefaultEducator)
+            .then(q502Created => incompleteQ502.id = q502Created.id)
 
-        const updatedQ502 = fillQ502({ ...incompleteQ502 })
-        cy.updateQuest(quest.Q502PhysicalActivityandSedentaryHabits, updatedQ502, accessTokenDefaultEducator)
+        completeQ502Fields(incompleteQ502)
+        cy.updateQuest(quest.Q502PhysicalActivityandSedentaryHabits, incompleteQ502, accessTokenDefaultEducator)
 
         cy.visit(Cypress.env('dashboard_uri'))
         cy.loginUI(defaultEducator)
@@ -61,11 +63,11 @@ describe('Q502PhysicalActivityandSedentaryHabits', () => {
         cy.selectCard(cardSelector.ACTIVITY)
         cy.checkQ502Status('Complete')
         cy.selectQuest(questDescription.PHYSICAL_HABITS)
-        cy.checkPhysicalHabitsQuest(updatedQ502)
+        cy.checkPhysicalHabitsQuest(incompleteQ502)
     })
 })
 
-function fillQ502(q502) {
+function completeQ502Fields(q502) {
     q502.transport_to_school = '6' // outro*
     q502.another_way_expl = 'helicopter'
 

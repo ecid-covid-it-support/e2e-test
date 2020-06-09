@@ -48,11 +48,12 @@ describe('Q501PhysicalActivityForChildren', () => {
 
     it('When updating Q501PhysicalActivityForChildren filling it completely', () => {
         completeQ501.child_id = defaultChild01.username
-        cy.createQuest(quest.Q501PhysicalActivityForChildren, completeQ501, accessTokenDefaultEducator)
+        cy.createQuest(quest.Q501PhysicalActivityForChildren,
+            completeQ501, accessTokenDefaultEducator)
+            .then(q501Created => completeQ501.id = q501Created.id)
 
-        const updatedQ501 = { ...completeQ501 }
-        updatedQ501.paqc_10 = '2' // child was not sick
-        cy.updateQuest(quest.Q501PhysicalActivityForChildren, updatedQ501, accessTokenDefaultEducator)
+        completeQ501.paqc_10 = '2'
+        cy.updateQuest(quest.Q501PhysicalActivityForChildren, completeQ501, accessTokenDefaultEducator)
 
         cy.visit(Cypress.env('dashboard_uri'))
         cy.loginUI(defaultEducator)
@@ -62,6 +63,6 @@ describe('Q501PhysicalActivityForChildren', () => {
         cy.selectCard(cardSelector.ACTIVITY)
         cy.checkQ501Status('Complete')
         cy.selectQuest(questDescription.ACTIVITY_FREQUENCY)
-        cy.checkActivityFrequencyQuest(updatedQ501)
+        cy.checkActivityFrequencyQuest(completeQ501)
     })
 })
