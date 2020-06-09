@@ -1,3 +1,4 @@
+import '../../../fixtures/utils/date.utils'
 let defaultEducator = require('../../../fixtures/account/models/users/educators/educator.json')
 let defaultChild01 = require('../../../fixtures/account/models/users/children/child01.json')
 let defaultChildrenGroup = require('../../../fixtures/account/models/children-groups/group01.json')
@@ -66,9 +67,4 @@ function prepareFoodRecords(foodsRecord) {
         record.child_id = defaultChild01.username
         record.date = new Date().toLocalISOString()
     })
-}
-
-Date.prototype.toLocalISOString = function () {
-    function pad(number) { return ('' + number).padStart(2, '0') }
-    return `${this.getFullYear()}-${pad(this.getMonth() + 1)}-${pad(this.getDate())}T${pad(this.getHours())}:${pad(this.getMinutes())}:${pad(this.getSeconds())}.${pad(this.getTimezoneOffset())}Z`
 }

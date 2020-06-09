@@ -1,3 +1,4 @@
+import '../../fixtures/utils/date.utils'
 let defaultEducator = require('../../fixtures/account/models/users/educators/educator.json')
 let defaultChild01 = require('../../fixtures/account/models/users/children/child01.json')
 let childrenArray = require('../../fixtures/account/models/users/children/children.json')
@@ -39,6 +40,8 @@ describe('Selection of Children', () => {
 
         childrenArray.forEach((child) => {
             child.institution_id = state.institution_id
+            child.age_calc_date = new Date().toLocalISOString().substring(0, 10) // YYYY-MM-DD
+            
             cy.createUser(user.CHILD, child, state).then(childCreated => {
                 child.id = childCreated.id
                 defaultChildrenGroup.children.push(childCreated.id)
