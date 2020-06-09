@@ -47,3 +47,18 @@ Cypress.Commands.add("registerGroupFromEducador", (educator, children_group) => 
             }).then(response => response.body)
         })
 })
+
+Cypress.Commands.add("registerGroupFromHealthProfessional", (educator, children_group) => {
+    cy.auth(educator.username, educator.password)
+        .then((response) => {
+            cy.request({
+                method: 'POST',
+                url: `/healthprofessionals/${educator.id}/children/groups`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer '.concat(response)
+                },
+                body: children_group
+            }).then(response => response.body)
+        })
+})

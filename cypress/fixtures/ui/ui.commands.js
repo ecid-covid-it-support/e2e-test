@@ -11,6 +11,11 @@ import './questionnaires/qfoodtracking/breakfast.commands'
 
 import './tracking/iot_devices.commands'
 
+import './follow_up/follow_up.commands'
+import './follow_up/nutrition.commands'
+import './follow_up/physical_activity.commands'
+import './follow_up/sleep.commands'
+
 Cypress.Commands.add("loginUI", function (user) {
     cy.get('[ng-reflect-name=username]')
         .type(user.username).should('have.value', user.username)

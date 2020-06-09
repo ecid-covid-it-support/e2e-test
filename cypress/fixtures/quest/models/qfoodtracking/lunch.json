@@ -1,0 +1,31 @@
+{
+    "child_id": "",
+    "date": "",
+    "type": "Lunch",
+    "categories_array": [
+        "Rice",
+        "4",
+        "Pasta",
+        "2",
+        "Vegetable",
+        "3",
+        "Meat",
+        "4",
+        "Fish",
+        "1",
+        "Eggs",
+        "1",
+        "legumes",
+        "1",
+        "proc_meats",
+        "1",
+        "olive_oil",
+        "1",
+        "industrial_sauce",
+        "1",
+        "sugary_sodas",
+        "1",
+        "water",
+        "1"
+    ]
+}

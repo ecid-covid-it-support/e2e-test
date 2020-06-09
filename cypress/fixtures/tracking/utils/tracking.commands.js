@@ -21,3 +21,15 @@ Cypress.Commands.add("createInstitutionEnv", (institution_id, environment, acces
         body: environment
     }).then(response => response.body)
 })
+
+Cypress.Commands.add("createChildLogs", (logs, childId, resource, accessToken) => {
+    cy.request({
+        method: 'POST',
+        url: `/children/${childId}/logs/${resource}`,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '.concat(accessToken)
+        },
+        body: logs
+    }).then(response => response.body)
+})

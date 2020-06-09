@@ -1,5 +1,5 @@
 export default Object.freeze({
-    FOLLOW: 'follow',
+    FOLLOW_UP: 'follow',
     MISSIONS: 'missions',
     IOT_DEVICES: 'iot',
     FOOD_INTAKE: 'food',

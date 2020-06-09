@@ -1,0 +1,35 @@
+{
+    "start_time": "2020-06-09T01:00:00Z",
+    "end_time": "2020-06-09T09:01:40Z",
+    "duration": 28900000,
+    "pattern": {
+        "data_set": [
+            {
+                "start_time": "2018-08-18T01:53:30.00Z",
+                "name": "asleep",
+                "duration": 21600000
+            },
+            {
+                "start_time": "2018-08-18T02:28:30.00Z",
+                "name": "restless",
+                "duration": 600000
+            },
+            {
+                "start_time": "2018-08-18T02:32:30.00Z",
+                "name": "awake",
+                "duration": 300000
+            },
+            {
+                "start_time": "2018-08-18T01:53:30.00Z",
+                "name": "asleep",
+                "duration": 6300000
+            },
+            {
+                "start_time": "2018-08-18T02:28:30.00Z",
+                "name": "restless",
+                "duration": 100000
+            }
+        ]
+    },
+    "type": "classic"
+}

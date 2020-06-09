@@ -170,7 +170,7 @@ class AccountDb {
     deleteChildrenGroups() {
         return this._deleteCollection('childrengroups');
     }
-    
+
     deleteIntegrationEvents() {
         return this._deleteCollection('integrationevents');
     }
