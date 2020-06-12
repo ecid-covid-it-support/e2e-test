@@ -1,0 +1,25 @@
+module.exports = {
+    'ACTIVITY_LOGIN': 'activitylogin',
+    'ADRESS': 'address',
+    'APP_ROLE': 'app_role',
+    'APP_USER': 'app_user',
+    'ARDENRULE': 'ardenrule',
+    'ARDENRULE_FOR_PATIENT': 'ardenruleforpatient',
+    'ASSIGNED_MISSION': 'assigned_mission',
+    'CATEGORY': 'category',
+    'CUSTOM_MIGRATIONS': 'custom_migrations',
+    'EDUCATOR_MISSION': 'educator_mission',
+    'FOOD_RECOGNITION': 'food_recognition',
+    'NOTIFICATION': 'notifications',
+    'OBSERVATION': 'observation',
+    'OBSERVATION_NEW': 'observations_new',
+    'PATIENT_AUDIT': 'patientaudit',
+    'ROBOT_RESULT': 'robot_result',
+    'ROBOT_RESULT_LOG': 'robot_result_log',
+    'ROBOT_RESULT_MISSION': 'robot_result_mission',
+    'RULES_RESULT': 'ruleresult',
+    'USER_ROLES': 'users_roles',
+    'WEEKLY_MISSION': 'weekly_mission',
+    'WEEKLY_QUESTIONNAIRES': 'weekly_questionnaires'
+}
+

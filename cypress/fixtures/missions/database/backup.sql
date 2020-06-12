@@ -15,6 +15,8 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+SET FOREIGN_KEY_CHECKS=0;
+
 --
 -- Table structure for table `activitylogin`
 --
@@ -38,10 +40,8 @@ CREATE TABLE `activitylogin` (
 -- Dumping data for table `activitylogin`
 --
 
-LOCK TABLES `activitylogin` WRITE;
 /*!40000 ALTER TABLE `activitylogin` DISABLE KEYS */;
 /*!40000 ALTER TABLE `activitylogin` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `address`
@@ -96,11 +96,9 @@ CREATE TABLE `app_role` (
 -- Dumping data for table `app_role`
 --
 
-LOCK TABLES `app_role` WRITE;
 /*!40000 ALTER TABLE `app_role` DISABLE KEYS */;
 INSERT INTO `app_role` VALUES (1,'ROLE_PATIENT','ROLE_PATIENT','1983-10-10 10:00:00','1983-10-10 10:00:00'),(2,'ROLE_ADMIN','ROLE_ADMIN','1983-10-10 10:00:00','1983-10-10 10:00:00');
 /*!40000 ALTER TABLE `app_role` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `app_user`
