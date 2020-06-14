@@ -1,6 +1,7 @@
 const AccountDb = require('../fixtures/account/database/account.db')
 const QuestDb = require('../fixtures/quest/database/quests.db')
 const TrackingDb = require('../fixtures/tracking/database/tracking.db')
+const MissionsDb = require('../fixtures/missions/database/missions.db')
 
 const accountDBConnect = () => {
   return new Promise((resolve) => {
@@ -78,19 +79,85 @@ const removeChildrenGroups = () => {
   })
 }
 
+const missionsDBConnect = () => {
+  return new Promise((resolve) => {
+    MissionsDb.connect().then(resolve(true))
+  })
+}
+
+const missionsDBRestore = () => {
+  return new Promise(resolve => {
+    MissionsDb.restore().then(resolve(true))
+  })
+}
+
 module.exports = on => {
-  on('task', { accountDBConnect() { return accountDBConnect() } })
-  on('task', { trackingDBConnect() { return trackingDBConnect() } })
-  on('task', { questDBConnect() { return questDBConnect() } })
+  on('task', {
+    accountDBConnect() {
+      return accountDBConnect()
+    }
+  })
+  on('task', {
+    trackingDBConnect() {
+      return trackingDBConnect()
+    }
+  })
+  on('task', {
+    questDBConnect() {
+      return questDBConnect()
+    }
+  })
+  on('task', {
+    missionsDBConnect() {
+      return missionsDBConnect()
+    }
+  })
 
-  on('task', { accountDBDispose() { return accountDBDispose() } })
-  on('task', { trackingDBDispose() { return trackingDBDispose() } })
-  on('task', { questDBDispose() { return questDBDispose() } })
+  on('task', {
+    accountDBDispose() {
+      return accountDBDispose()
+    }
+  })
+  on('task', {
+    trackingDBDispose() {
+      return trackingDBDispose()
+    }
+  })
+  on('task', {
+    questDBDispose() {
+      return questDBDispose()
+    }
+  })
+  on('task', {
+    missionsDBRestore() {
+      return missionsDBRestore()
+    }
+  })
 
-  on('task', { cleanAccountDB() { return removeAccountDBCollections() } })
-  on('task', { cleanTrackingDB() { return removeTrackingDBCollections() } })
-  on('task', { cleanQuestDB() { return removeQuestDBCollections() } })
+  on('task', {
+    cleanAccountDB() {
+      return removeAccountDBCollections()
+    }
+  })
+  on('task', {
+    cleanTrackingDB() {
+      return removeTrackingDBCollections()
+    }
+  })
+  on('task', {
+    cleanQuestDB() {
+      return removeQuestDBCollections()
+    }
+  })
 
-  on('task', { removeAllChildren() { return removeAllChildren() } })
-  on('task', { removeChildrenGroups() { return removeChildrenGroups() } })
+  on('task', {
+    removeAllChildren() {
+      return removeAllChildren()
+    }
+  })
+  on('task', {
+    removeChildrenGroups() {
+      return removeChildrenGroups()
+    }
+  })
 }

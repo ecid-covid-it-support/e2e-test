@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const EventEmitter = require('events')
+require('dotenv').config()
 
 class TrackingDb {
     constructor() {
@@ -39,7 +40,7 @@ class TrackingDb {
         });
     }
     getURL() {
-        return 'mongodb://iot.tracking.app:BSVTMAKshWfy@api.test.ocariot.tk:27019/iot-tracking?ssl=true'
+        return process.env.IOT_TRACKING_DB_URI
     }
     get connection() {
         return this._connection;
@@ -94,7 +95,7 @@ class TrackingDb {
     deletePhysicalActivitiesLogs() {
         return this._deleteCollection('logs');
     }
-    
+
     deleteSleepsRecords() {
         return this._deleteCollection('sleeps');
     }
@@ -102,7 +103,7 @@ class TrackingDb {
     deleteMeasurements() {
         return this._deleteCollection('measurements');
     }
-    
+
     async removeCollections() {
         if (this._connection) {
             const result = await this._connection.db

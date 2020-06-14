@@ -1,3 +1,4 @@
+ 
 # Logs
 logs
 *.log
@@ -57,6 +58,7 @@ typings/
 
 # dotenv environment variables file
 .env
+cypress.env.json
 
 # next.js build output
 .next
@@ -86,5 +88,3 @@ bash.exe.stackdump
 *.csr
 *.cert
 certs
-
-
