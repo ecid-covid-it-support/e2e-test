@@ -1,0 +1,30 @@
+{
+    "creatorId": "",
+    "type": "PhysicalActivity",
+    "goal": [
+        {
+            "locale": "en",
+            "text": "D3"
+        }
+    ],
+    "description": [
+        {
+            "locale": "en",
+            "text": "description"
+        }
+    ],
+    "durationType": "Day",
+    "durationNumber": "4",
+    "childRecommendation": [
+        {
+            "locale": "en",
+            "text": "here is a recommendation for the child"
+        }
+    ],
+    "parentRecommendation": [
+        {
+            "locale": "en",
+            "text": "here is a recommendation for the parents"
+        }
+    ]
+}

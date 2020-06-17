@@ -16,6 +16,8 @@ import './follow_up/nutrition.commands'
 import './follow_up/physical_activity.commands'
 import './follow_up/sleep.commands'
 
+import './missions/missions.commands'
+
 Cypress.Commands.add("loginUI", function (user) {
     cy.get('[ng-reflect-name=username]')
         .type(user.username).should('have.value', user.username)

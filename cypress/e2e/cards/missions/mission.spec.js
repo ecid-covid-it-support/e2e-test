@@ -1,7 +1,7 @@
 let defaultEducator = require('../../../fixtures/account/models/users/educators/educator.json')
 let defaultChild01 = require('../../../fixtures/account/models/users/children/child01.json')
 let defaultChildrenGroup = require('../../../fixtures/account/models/children-groups/group01.json')
-let completeQ501 = require('../../../fixtures/quest/models/q501/q501.json')
+let educatorMissions = require('../../../fixtures/missions/models/educator.missions.json')
 const cardSelector = require('../../../fixtures/ui/cards.selector')
 const questDescription = require('../../../fixtures/ui/quest.description')
 const user = require('../../../fixtures/account/utils/account.resources')
@@ -40,51 +40,20 @@ describe('Missions', () => {
         cy.task('accountDBDispose')
     })
 
-    it('When Missions was completely filled', () => {
-        completeQ501.child_id = defaultChild01.username
-        let mission = getMission(defaultEducator)
+    it('When Educator Missions was registered', () => {
+        educatorMissions.child_id = defaultChild01.username
+        educatorMissions.creatorId = defaultEducator.id
+        cy.createEducatorMissions(educatorMissions, accessTokenDefaultEducator)
+            .then(response => {
+                const obj = { missionId: response.data, childId: defaultChild01.id }
+                cy.assignEducatorMission(obj, accessTokenDefaultEducator)
+            })
 
-        cy.createEducatorMissions(mission, accessTokenDefaultEducator)
-
-        // cy.visit(Cypress.env('dashboard_uri'))
-        // cy.loginUI(defaultEducator)
-        // cy.checkChild(defaultChild01)
-        // cy.selectChild(defaultChild01)
-        // cy.selectCard(cardSelector.MISSIONS)
+        cy.visit(Cypress.env('dashboard_uri'))
+        cy.loginUI(defaultEducator)
+        cy.checkChild(defaultChild01)
+        cy.selectChild(defaultChild01)
+        cy.selectCard(cardSelector.MISSIONS)
+        cy.checkEducatorMissions(educatorMissions, defaultEducator.username, 'Inactive')
     })
 })
-
-function getMission(educator) {
-    const mission = {
-        creatorId: educator.id,
-        type: "PhysicalActivity",
-        goal: [
-            {
-                "locale": "en",
-                "text": "D3"
-            }
-        ],
-        description: [
-            {
-                "locale": "en",
-                "text": "description"
-            }
-        ],
-        durationType: "Day",
-        durationNumber: "4",
-        childRecommendation: [
-            {
-                "locale": "en",
-                "text": "child recomendation"
-            }
-        ],
-        parentRecommendation: [
-            {
-                "locale": "en",
-                "text": "parent recomendation"
-            }
-        ]
-    }
-
-    return mission
-}
