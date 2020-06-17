@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const EventEmitter = require('events')
+require('dotenv').config()
 
 class AccountDb {
     constructor() {
@@ -40,7 +41,7 @@ class AccountDb {
     }
 
     getURL() {
-        return 'mongodb://account.app:zNYUc52VCtU3@api.test.ocariot.tk:27018/account?ssl=true'
+        return process.env.ACCOUNT_DB_URI
     }
 
     get connection() {
@@ -170,7 +171,7 @@ class AccountDb {
     deleteChildrenGroups() {
         return this._deleteCollection('childrengroups');
     }
-    
+
     deleteIntegrationEvents() {
         return this._deleteCollection('integrationevents');
     }

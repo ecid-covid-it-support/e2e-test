@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const EventEmitter = require('events')
+require('dotenv').config()
 
 class QuestDb {
     constructor() {
@@ -39,7 +40,7 @@ class QuestDb {
         });
     }
     getURL() {
-        return 'mongodb://questionnaire.app:UVH5UXSrYBxY@api.test.ocariot.tk:27020/quest?ssl=true'
+        return process.env.QUEST_DB_URI
     }
     get connection() {
         return this._connection;
@@ -82,7 +83,7 @@ class QuestDb {
             }
         });
     }
-    
+
     deleteQ1SocioDemographic() {
         return this._deleteCollection('Q1SociodemographicModel');
     }
@@ -102,7 +103,7 @@ class QuestDb {
     deleteQ501PhysicalActivityForChildren() {
         return this._deleteCollection('Q501PhysicalActivityQuestionnaireForChildren');
     }
-    
+
     async removeCollections() {
         if (this._connection) {
             const result = await this._connection.db
