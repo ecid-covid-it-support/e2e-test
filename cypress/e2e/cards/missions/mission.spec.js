@@ -3,9 +3,7 @@ let defaultChild01 = require('../../../fixtures/account/models/users/children/ch
 let defaultChildrenGroup = require('../../../fixtures/account/models/children-groups/group01.json')
 let educatorMissions = require('../../../fixtures/missions/models/educator.missions.json')
 const cardSelector = require('../../../fixtures/ui/cards.selector')
-const questDescription = require('../../../fixtures/ui/quest.description')
 const user = require('../../../fixtures/account/utils/account.resources')
-const quest = require('../../../fixtures/quest/utils/quest.resources')
 
 describe('Missions', () => {
     let state = {}
@@ -54,6 +52,6 @@ describe('Missions', () => {
         cy.checkChild(defaultChild01)
         cy.selectChild(defaultChild01)
         cy.selectCard(cardSelector.MISSIONS)
-        cy.checkEducatorMissions(educatorMissions, defaultEducator.username, 'Inactive')
+        cy.checkEducatorMissions(educatorMissions, defaultEducator.id, 'Inactive')
     })
 })
